@@ -3,7 +3,9 @@ from flask import Flask, render_template, request, redirect, flash
 app = Flask(__name__)
 app.secret_key = 'chave_secreta_para_flash'
 
-usuarios = []  # Lista vazia inicialmente
+usuarios = [
+    {"id": 2, "nome": "Maria", "email": "maria@email.com"}
+]  # Lista vazia inicialmente
 
 @app.route('/')
 def index():

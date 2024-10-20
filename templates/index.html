@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Software - Página Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Lista de Usuários</h1>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <section id="formulario">
+        <h2>Adicionar Usuário</h2>
+        <form action="{{ url_for('adicionar') }}" method="POST">
+            <input type="text" name="nome" placeholder="Nome">
+            <input type="email" name="email" placeholder="Email">
+            <input type="submit" value="Adicionar">
+        </form>
+    </section>
+
+    <section id="tabela">
+        <h2>Usuários Cadastrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario['id'] }}</td>  <!-- Problema: ID é string -->
+                        <td>{{ usuario['nome'] }}</td>
+                        <td>{{ usuario['email'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>Copyright © 2024</p>
+    </footer>
+
+</body>
+</html>

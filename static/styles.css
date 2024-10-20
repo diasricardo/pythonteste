@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+#formulario {
+    margin: 20px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    display: block;
+    width: 100%;  /* Problema: Pode quebrar layout em telas pequenas */
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.flash-messages {
+    background-color: yellow;
+    padding: 10px;
+    list-style: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;  /* Problema: Pode sobrepor conteúdo */
+    bottom: 0;
+    width: 100%;
+}

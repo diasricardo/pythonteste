@@ -1,13 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, flash
 
 app = Flask(__name__)
 app.secret_key = 'chave_secreta_para_flash'
 
-# Lista para armazenar dados temporariamente
-usuarios = [
-    {"id": 1, "nome": "João", "email": "joao@email.com"},
-    {"id": 2, "nome": "Maria", "email": "maria@email.com"}
-]
+usuarios = []  # Lista vazia inicialmente
 
 @app.route('/')
 def index():
@@ -18,16 +14,15 @@ def adicionar():
     nome = request.form.get('nome')
     email = request.form.get('email')
 
-    if not nome or not email:
-        flash('Todos os campos são obrigatórios!')
-        return redirect(url_for('index'))
+    # Erro proposital: Falta de validação mais rigorosa
+    if nome == "" or email == "":
+        flash('Preencha todos os campos!')
+        return redirect('/')
 
-    # Erro proposital: ID gerado incorretamente como string
-    novo_usuario = {"id": str(len(usuarios) + 1), "nome": nome, "email": email}
-    usuarios.append(novo_usuario)
-
+    # Erro proposital: Não há verificação para e-mails duplicados
+    usuarios.append({"nome": nome, "email": email})
     flash('Usuário adicionado com sucesso!')
-    return redirect(url_for('index'))
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
